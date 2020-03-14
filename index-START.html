@@ -7,14 +7,15 @@
 <body>
 
 
+
     <div class="clock">
       <div class="clock-face">
         <div class="hand hour-hand"></div>
         <div class="hand min-hand"></div>
         <div class="hand second-hand"></div>
       </div>
-
     </div>
+
 
 
   <style>
@@ -34,6 +35,11 @@
       min-height: 100vh;
       align-items: center;
     }
+
+    .info {
+      padding-left: 20px;
+    }
+
 
     .clock {
       width: 30rem;
@@ -63,12 +69,21 @@
       background: black;
       position: absolute;
       top: 50%;
+      border-radius: 40px;
       transform-origin: 100%;
       transform:rotate(90deg);
       transition: all 0.05s;
       transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
-    
+
+    .second-hand {
+      background: gold;
+
+    }
+    .min-hand {
+      background: #666;
+    }
+
 
   </style>
   <!-- update time -->
@@ -92,12 +107,17 @@
 
       // minute hand
       const mins = now.getMinutes();
-      // makes minutes calculate with degrees for the movement of the minutes hand and we sum 90 para que vaya al par de los segundos mientras corre 
+      // makes minutes calculate with degrees for the movement of the minutes hand and we sum 90 para que vaya al par de los minutos mientras corre 
       const minutesDegrees = ((mins / 60) * 360) + 90;
       // styling the hand by using Template Literal 
       minHand.style.transform = `rotate(${minutesDegrees}deg)`
 
       // hour hand
+      const hour = now.getHours();
+      // makes hour calculate with degrees for the movement of the minutes hand and we sum 90 para que vaya al par de las horas mientras corre 
+      const hourDegrees = ((hour / 12) * 360) + 90;
+      // styling the hand by using Template Literal 
+      hourHand.style.transform = `rotate(${hourDegrees}deg)`
     }
     // makes it run every second
     setInterval(setDate,1000)
